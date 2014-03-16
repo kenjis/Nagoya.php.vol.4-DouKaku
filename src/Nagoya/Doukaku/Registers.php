@@ -15,20 +15,29 @@ namespace Nagoya\Doukaku;
  */
 class Registers
 {
-    protected $registerCapability = [
-        1 => 2,
-        2 => 7,
-        3 => 3,
-        4 => 5,
-        5 => 2,
-    ];
-    protected $registerQueue = [
-        1 => [],
-        2 => [],
-        3 => [],
-        4 => [],
-        5 => [],
-    ];
+    /**
+     * Capability of each register
+     * 
+     * @var array [int registerId => int number]
+     */
+    protected $registerCapability;
+    
+    /**
+     * Queue of each register
+     * 
+     * @var array [int registerId => array queue]
+     */
+    protected $registerQueue;
+
+    public function __construct($registerCapability)
+    {
+        $this->registerCapability = $registerCapability;
+        
+        // Initialize $this->registerQueue
+        foreach ($registerCapability as $registerId => $number) {
+            $this->registerQueue[$registerId] = [];
+        }
+    }
 
     /**
      * main process
@@ -48,7 +57,7 @@ class Registers
             }
         }
 
-        $output = implode(',', $this->getRegisterQueuePersonNumber());
+        $output = implode(',', $this->getRegisterQueueNumbers());
         return $output;
     }
 
@@ -88,7 +97,7 @@ class Registers
 
     protected function getMinRegister()
     {
-        $queueArray = $this->getRegisterQueuePersonNumber();
+        $queueArray = $this->getRegisterQueueNumbers();
 
         $minRegisterId = 1;
         $minNumber = $queueArray[1];
@@ -103,25 +112,24 @@ class Registers
         return $minRegisterId;
     }
 
-    protected function getRegisterQueuePersonNumber()
+    /**
+     * Get numbers of customer in each register's queue
+     * 
+     * @return array [int registerId => int number]
+     */
+    protected function getRegisterQueueNumbers()
     {
-        $register = [
-            1 => 0,
-            2 => 0,
-            3 => 0,
-            4 => 0,
-            5 => 0,
-        ];
-
         foreach ($this->registerQueue as $registerId => $queue) {
+            $registers[$registerId] = 0;
+            
             foreach ($queue as $number) {
                 if ($number === 'x') {
                     $number = 1;
                 }
-                $register[$registerId] += $number;
+                $registers[$registerId] += $number;
             }
         }
 
-        return $register;
+        return $registers;
     }
 }

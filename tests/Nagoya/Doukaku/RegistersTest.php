@@ -11,7 +11,14 @@ class RegistersTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->skeleton = new Registers;
+        $registerCapability = [
+            1 => 2,
+            2 => 7,
+            3 => 3,
+            4 => 5,
+            5 => 2,
+        ];
+        $this->skeleton = new Registers($registerCapability);
     }
 
     public function testNew()
