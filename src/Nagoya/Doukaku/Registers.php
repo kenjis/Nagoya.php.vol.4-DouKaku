@@ -98,18 +98,8 @@ class Registers
     protected function getMinRegister()
     {
         $queueArray = $this->getRegisterQueueNumbers();
-
-        $minRegisterId = 1;
-        $minNumber = $queueArray[1];
-
-        foreach ($queueArray as $registerId => $number) {
-            if ($minNumber > $number) {
-                $minRegisterId = $registerId;
-                $minNumber = $queueArray[$registerId];
-            }
-        }
-
-        return $minRegisterId;
+        $min = min($queueArray);
+        return array_search($min, $queueArray);
     }
 
     /**
