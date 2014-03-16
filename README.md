@@ -5,3 +5,5 @@
 [Nagoya.php vol.4](http://nagoyaphp.doorkeeper.jp/events/9321)でやったものです。
 
 `procedural`フォルダ以下に手続き型で解答しました。
+
+`src`フォルダ以下にクラス化した解答を追加しました。
