@@ -5,7 +5,7 @@ namespace Nagoya\Doukaku;
 class RegistersTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Doukaku
+     * @var Registers
      */
     protected $skeleton;
 
