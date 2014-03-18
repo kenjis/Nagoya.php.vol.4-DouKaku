@@ -1,7 +1,8 @@
 <?php
 
 /**
- * This file is part of the Nagoya.Doukaku
+ * このファイルは、1クラスでの解答例です。
+ * これ以外のファイルは、クラスを分割して実装し直したものです。
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
